@@ -1,0 +1,247 @@
+---
+title: 'STAT 2200: Problem Set 2'
+author: 'Jack Ambery'
+date: 'Due: Monday, 2/12 at the beginning of class'
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+fontsize: 12pt
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+<!-- set global options -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\vspace{0.1in}
+
+```{=tex}
+\begin{itemize}
+  \item You may discuss this assignment with other students in the class, but 
+    you may not sit down and type it up with them or show them your code. You 
+    also may not discuss the assignment with anyone who isn't in our class, nor
+    may you look up anything online.
+  \item You must type up your homework using R Markdown. I want to see all of 
+    your code and output, and any answers you provide that aren't code must be 
+    typed above the respective \texttt{R} code chunk.
+  \item Make sure none of your code runs off the page, otherwise you will lose 
+    points.
+  \item You must print and turn in a PDF of your homework. I won't accept 
+    anything else (e.g., a Word document). All pages must be stapled together.
+  \item This assignment is worth 100 points.
+\end{itemize}
+```
+<!-- part 1 -->
+
+\section{Part 1}
+
+In this part you will practice working with vectors and strings.
+\vspace{0.2in}
+
+\noindent 1. Create and store a vector that consists of the following
+movie lengths (in minutes): 94, 109, 110, 123, 125, 108, 92, 106, 84,
+119, 110, and 140. \vspace{0.2in}
+```{r}
+lengths <- c(94, 109, 110, 123, 125, 108, 92, 106, 84,
+119, 110, 140)
+```
+
+\noindent 2. Using your entire movie length vector from problem 1, as
+well as the \texttt{cat()} function, reproduce the output below
+\textit{exactly} as it's displayed. Note that the \texttt{round()}
+function allows you to round to a specified number of decimal places.
+Also note that you may not manually type the number 110.
+
+Mean movie length (in min): \newline
+110 minutes
+\vspace{0.2in}
+
+```{r}
+cat("Mean movie length (in min):\n",mean(lengths),"minutes")
+```
+
+\noindent 3. Using your entire movie length vector from problem 1, as
+well as the \texttt{paste()} and/or \texttt{paste0()} functions,
+reproduce the output below \textit{exactly} as it's displayed. You may
+not manually type the number 110.
+
+"The mean movie length is 110 minutes."
+```{r}
+paste0("The mean movie length is ",mean(lengths)," minutes.")
+```
+
+
+\newpage
+
+<!-- part 2 -->
+
+\section{Part 2}
+
+In this part you will practice working with data frames that you will
+create manually. \vspace{0.2in}
+
+\noindent 1. Create and print a data frame that consists of the
+following variables and values for recipes:
+
+```{=tex}
+\begin{itemize}
+    \item type of recipe: entree, appetizer, appetizer, entree, entree, 
+    appetizer, dessert, dessert, entree, entree,
+    \item number of ingredients: 8, 4, 5, 10, 6, 8, 7, 15, 10, 9,
+    \item total prep time (in min): 15, 15, 5, 35, 20, 40, 25, 30, 10, 20,
+    \item total cook time (in min): 30, 15, 20, 55, 25, 10, 120, 25, 45, 60, and
+    \item contains meat (yes/no): yes, yes, yes, no, no, yes, no, no, yes, yes
+  \end{itemize}
+\vspace{0.1in}
+```
+Note: Two of the variables should be factors! Also, make sure your
+variable names are descriptive but not too long. \vspace{0.1in}
+```{r}
+recipies <- data.frame(
+  type = factor(c("entree", "appetizer", "appetizer", "entree", "entree", "appetizer", "dessert", "dessert", "entree", "entree")),
+  ingredients = c(8, 4, 5, 10, 6, 8, 7, 15, 10, 9),
+  prepTime = c(15, 15, 5, 35, 20, 40, 25, 30, 10, 20),
+  cookTime = c(30, 15, 20, 55, 25, 10, 120, 25, 45, 60),
+  hasMeat = factor(c("yes", "yes", "yes", "no", "no", "yes", "no", "no", "yes", "yes")
+))
+recipies
+```
+
+
+\noindent 2. Create a new variable that measures the total time (prep +
+cook) it takes to make each recipe. Add this new variable to the data
+frame from problem 1, and then print the updated data frame. You may not
+manually type the numbers. \vspace{0.1in}
+```{r}
+recipies$totalTime <- recipies$prepTime + recipies$cookTime
+recipies
+```
+
+\noindent 3. Create and print a second data frame that consists of the
+following variables and values for four additional recipes:
+
+```{=tex}
+\begin{itemize}
+    \item type of recipe: appetizer, entree, dessert, appetizer
+    \item number of ingredients: 3, 15, 8, 5,
+    \item total prep time (in min): 10, 35, 45, 10,
+    \item total cook time (in min): 0, 90, 150, 20, and
+    \item contains meat (yes/no): no, no, no, yes
+  \end{itemize}
+```
+
+```{r}
+recipies2 <- data.frame(
+  type = factor(c("appetizer", "entree", "dessert", "appetizer")),
+  ingredients = c(3, 15, 8, 5),
+  prepTime = c(10, 35, 45, 10),
+  cookTime = c(0, 90, 150, 20),
+  hasMeat = factor(c("no", "no", "no", "yes"))
+)
+recipies2
+```
+
+\noindent 4. Create the same total time variable you created in problem
+2 for this new data set, and then print the updated data frame.
+\vspace{0.1in}
+```{r}
+recipies2$totalTime <- recipies2$prepTime + recipies2$cookTime
+recipies2
+```
+
+\noindent 5. Combine the data frames from problems 1 and 4 so that you
+have a new data set with 14 observations, and then print the resulting
+data frame. \vspace{0.1in}
+```{r}
+allRecipies <- rbind(recipies, recipies2)
+allRecipies
+```
+
+\noindent 6. Print all of the data for the recipes than take under an
+hour to make (start to finish).
+```{r}
+allRecipies[allRecipies$totalTime < 60, ]
+```
+
+\newpage
+
+<!-- part 3 -->
+
+\section{Part 3}
+
+In this part you will practice working with a data frame that has
+already been created. The data set, named \texttt{mtcars}, is included
+with base \texttt{R}. \vspace{0.2in}
+
+\noindent 1. What type of data structure is the data set stored as? Use
+an appropriate function and then type your answer above your code
+(outside of the \texttt{R} code chunk). \vspace{0.1in}
+
+The mtcars dataset is stored as a data frame with 32 observations and 11 variables.
+```{r}
+str(mtcars)
+```
+
+\noindent 2. How many cars are in the data set? How many variables are
+there? Use appropriate function(s) and then type your answers above your
+code (outside of the \texttt{R} code chunk). \vspace{0.1in}
+
+The mtcars dataset has 32 cars and 11 variables. Columns tells us the number of variables and rows tells us the number of cars.
+```{r}
+# columns
+ncol(mtcars)
+
+#rows
+nrow(mtcars)
+```
+
+\noindent 3. Print the first nine rows of the data set. \vspace{0.1in}
+```{r}
+head(mtcars, n = 9)
+```
+
+\noindent 4. Extract the miles per gallon (mpg) variable from the data
+set. \vspace{0.1in}
+```{r}
+mtcars$mpg
+```
+
+\noindent 5. Find the average and median mpg of the cars. \vspace{0.1in}
+```{r}
+# mean
+mean(mtcars$mpg)
+
+# median
+median(mtcars$mpg)
+```
+
+\noindent 6. Create a new data frame that consists of only the miles per
+gallon (mpg) and horsepower (hp) variables for all of the cars. Make
+sure not to remove the names of the cars. \vspace{0.2in}
+```{r}
+mpgAndHp <- subset(mtcars, select = c(mpg, hp))
+```
+
+\noindent 7. Print all of the data for the cars with at least 105
+horsepower. \vspace{0.1in}
+```{r}
+mpgAndHp[mpgAndHp$hp >= 105, ]
+```
+
+\noindent 8. Print all of the data for the cars with an mpg under 20 or
+over 25 from the data set. \vspace{0.1in}
+```{r}
+mpgAndHp[mpgAndHp$mpg < 20 | mpgAndHp$mpg > 25, ]
+```
+
+\noindent 9. Print all of the data for the cars with an mpg of at least
+22 and a horsepower under 95.
+```{r}
+mpgAndHp[mpgAndHp$mpg >= 22 & mpgAndHp$hp < 95, ]
+```
+
