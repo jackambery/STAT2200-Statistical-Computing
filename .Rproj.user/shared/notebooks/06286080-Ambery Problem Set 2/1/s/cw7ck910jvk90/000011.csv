@@ -1,8 +1,0 @@
-"0","recipies <- data.frame("
-"0","  type = factor(c(""entree"", ""appetizer"", ""appetizer"", ""entree"", ""entree"", ""appetizer"", ""dessert"", ""dessert"", ""entree"", ""entree"")),"
-"0","  ingredients = c(8, 4, 5, 10, 6, 8, 7, 15, 10, 9),"
-"0","  prepTime = c(15, 15, 5, 35, 20, 40, 25, 30, 10, 20),"
-"0","  cookTime = c(30, 15, 20, 55, 25, 10, 120, 25, 45, 60),"
-"0","  hasMeat = factor(c(""yes"", ""yes"", ""yes"", ""no"", ""no"", ""yes"", ""no"", ""no"", ""yes"", ""yes"")"
-"0","))"
-"0","recipies"
