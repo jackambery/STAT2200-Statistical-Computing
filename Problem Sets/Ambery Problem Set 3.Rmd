@@ -1,0 +1,103 @@
+---
+title: "STAT 2200: Problem Set 3"
+author: "Jack Ambery"
+date: "Due: Monday, 2/26 at the beginning of class"
+fontsize: 12pt
+output: pdf_document
+---
+
+
+<!-- set global options -->
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\vspace{0.1in}
+
+\begin{itemize}
+  \item You may discuss this assignment with other students in the class, but 
+    you may not sit down and type it up with them or show them your code. You 
+    also may not discuss the assignment with anyone who isn't in our class, nor
+    may you look up anything online.
+  \item You must type up your homework using R Markdown. I want to see all of 
+    your code and output, and any answers you provide that aren't code must be 
+    typed above the respective \texttt{R} code chunk.
+  \item Make sure none of your code runs off the page, otherwise you will lose 
+    points.
+  \item You must print and turn in a PDF of your homework. I won't accept 
+    anything else (e.g., a Word document). All pages must be stapled together.
+  \item This assignment is worth 100 points.
+\end{itemize}
+
+
+\vspace{0.1in}
+In problems 1 and 2 you will work with datasets from the website for the Lock, 
+Lock, Lock, Lock, and Lock textbook \textit{Statistics: Unlocking the Power of
+Data} (3rd ed.). Go to the following URL to access the two datasets: 
+\url{https://www.lock5stat.com/datapage3e.html}.
+\vspace{0.1in}
+
+\noindent 1. Download the CSV file that contains the \textit{Cars2020} dataset 
+and read it into \texttt{R}. Use \texttt{str()} to examine the structure of the 
+data set. Then:
+
+a) Make four plots -- one for each of the following variables: CityMPG, Drive, 
+LowPrice, and Type. Make sure you're using an appropriate type of plot for each. 
+Note: please don't make a pie chart for any categorical variable. You can earn a
+bonus point if you add appropriate labels to each plot.
+
+b) For the CityMPG variable, calculate the mean, median, standard deviation, 
+IQR, range, $5^{\text{th}}$ percentile, and $95^{\text{th}}$ percentile. Then 
+type these values outside of the \texttt{R} code chunk.
+
+c) For the Type variable, calculate (i) the frequency of cars that fall into 
+each category, and (ii) the percentage of cars that fall into each category. 
+Then type these values outside of the \texttt{R} code chunk.
+
+\vspace{0.1in}
+
+\noindent 2. Download the CSV file that contains the \textit{Hurricanes2018} 
+dataset and read it into \texttt{R}. Run \texttt{str()} to examine the structure
+of the dataset. Next, make a timeplot that plots the number of hurricanes over 
+the past century or so. Make sure the timeplot has points at each year and lines 
+connecting the points. You can earn a bonus point if you add a title and 
+appropriate labels to both axes.
+
+\vspace{0.1in}
+
+\noindent 3. Download the \textit{HollywoodMovies} dataset from Blackboard. As 
+you look at the dataset, you should notice missing values. Read the file into 
+\texttt{R} and run the \texttt{unique()} function on the variable Genre. This 
+function outputs all of the unique/different entries that exist in an object. Do 
+any entries stand out as possibly having been read improperly? If so, reimport 
+your data properly. Next, use an appropriate type of plot to plot the domestic 
+revenue of the movies (DomesticGross) based on genre (Genre), but only 
+considering the following three genres: action, drama, and romance.
+
+\vspace{0.1in}
+
+\noindent 4. Download the \textit{mlb2011} dataset from Blackboard. This file 
+was originally found on BaseballGuru.com (located at 
+\url{https://BaseballGuru.com}) and contains data for Major League Baseball 
+(MLB) pitchers in 2011. In this problem you are going to look at the 
+relationship between the number of wins (variable "W") and the number of 
+strikeouts (variable "SOA") for pitchers with at least 10 games started 
+(variable "GS") across the two different leagues (variable "LG"). The two 
+leagues are the National League (NL) and the American League (AL).
+
+After reading the data into \texttt{R}, you first want to separate pitchers into 
+two groups: those who had at least 10 starts and played in the National League,
+and those who had at least 10 starts and played in the American League. Then 
+create a scatterplot with the number of wins on the $y$-axis and the number of 
+strikeouts on the $x$-axis. You should appropriately distinguish between the 
+National League and American League pitchers using points with different colors. 
+Next, add two regression lines (aka lines of best fit) to the plot. The first 
+line, which has a $y$-intercept of 0.945 and a slope of 0.073, corresponds to 
+American League pitchers. The second line, which has a $y$-intercept of 1.966 
+and a slope of 0.059, corresponds to National League pitchers. Color the lines 
+appropriately. You can earn a bonus point if you correctly add axis labels and a 
+legend to your plot.
+
+
+
