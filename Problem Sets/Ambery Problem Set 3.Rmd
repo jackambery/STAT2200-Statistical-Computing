@@ -44,22 +44,118 @@ Data} (3rd ed.). Go to the following URL to access the two datasets:
 \noindent 1. Download the CSV file that contains the \textit{Cars2020}
 dataset and read it into \texttt{R}. Use \texttt{str()} to examine the
 structure of the data set. Then:
+```{r}
+library(readr)
+Cars2020 <- read_csv("../datasets/Cars2020.csv")
+# str() prints out a page worth of text
+# str(Cars2020)
+```
+
 
 a)  Make four plots -- one for each of the following variables: CityMPG,
     Drive, LowPrice, and Type. Make sure you're using an appropriate
     type of plot for each. Note: please don't make a pie chart for any
     categorical variable. You can earn a bonus point if you add
     appropriate labels to each plot.
+```{r}
+# CityMPG
+hist(Cars2020$CityMPG, xlab = "CityMPG of Cars", 
+     main = "Frequency of City MPGs")
+
+# Drive
+drives <- table(Cars2020$Drive)
+barplot(drives, xlab = "Type of Drive", 
+        main = "Frequency of Different Types of Drive")
+
+# LowPrice
+hist(Cars2020$LowPrice, xlab = "Low Prices of Cars", 
+     main = "Frequency of Low Prices")
+
+# Type
+types <- table(Cars2020$Type)
+barplot(types, xlab = "Type of Car", 
+        main = "Frequency of Different Car Types")
+```
+    
 
 b)  For the CityMPG variable, calculate the mean, median, standard
     deviation, IQR, range, $5^{\text{th}}$ percentile, and
     $95^{\text{th}}$ percentile. Then type these values outside of the
     \texttt{R} code chunk.
+```{r}
+mpgs <- Cars2020$CityMPG
+summary(mpgs)
+sd(mpgs)
+iqr <- 19.0 - 13.25
+iqr
+range <- 28 - 10
+range
+quantile(mpgs, 0.05)
+quantile(mpgs, 0.95)
+```
+__For the CityMPG variable__
+
+Mean: 16.19
+
+Median: 15.5
+
+Standard Deviation: 3.74
+
+IQR: 5.75
+
+Range: 18
+
+$5^{\text{th}}$ percentile: 11
+
+$95^{\text{th}}$ percentile: 22.55
 
 c)  For the Type variable, calculate (i) the frequency of cars that fall
     into each category, and (ii) the percentage of cars that fall into
     each category. Then type these values outside of the \texttt{R} code
     chunk.
+```{r}
+anyNA(Cars2020$Type) #FALSE
+table(Cars2020$Type)
+round(((table(Cars2020$Type)/nrow(Cars2020)) * 100), 2) #percentages
+```
+__Frequencies of Car Types__
+
+Hatchback:
+
+* Frequency = 4
+
+* Percentage = 3.64%
+
+Minivan:
+
+* Frequency = 4
+
+* Percentage = 3.64%
+
+Sedan:
+
+* Frequency = 38
+
+* Percentage = 34.55%
+
+Sporty:
+
+* Frequency = 11
+
+* Percentage = 10%
+
+SUV:
+
+* Frequency = 50
+
+* Percentage = 45.45%
+
+Wagon:
+
+* Frequency = 3
+
+* Percentage = 2.73%
+
 
 \vspace{0.1in}
 
@@ -70,6 +166,17 @@ timeplot that plots the number of hurricanes over the past century or
 so. Make sure the timeplot has points at each year and lines connecting
 the points. You can earn a bonus point if you add a title and
 appropriate labels to both axes.
+```{r}
+library(readr)
+Hurricanes2018 <- read_csv("../datasets/Hurricanes2018.csv")
+str(Hurricanes2018)
+```
+
+```{r}
+plot(Hurricanes2018$Year, Hurricanes2018$Hurricanes, xlab = "Year", ylab = "Number of Hurricanes", main = "Number of Hurricanes per Year")
+lines(Hurricanes2018$Year, Hurricanes2018$Hurricanes)
+```
+
 
 \vspace{0.1in}
 
