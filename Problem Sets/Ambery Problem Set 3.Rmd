@@ -189,6 +189,22 @@ out as possibly having been read improperly? If so, reimport your data
 properly. Next, use an appropriate type of plot to plot the domestic
 revenue of the movies (DomesticGross) based on genre (Genre), but only
 considering the following three genres: action, drama, and romance.
+```{r}
+HollywoodMovies <- read.csv("../datasets/HollywoodMovies.csv", na.strings = "")
+```
+
+```{r}
+unique(HollywoodMovies$Genre)
+
+genre <- HollywoodMovies$Genre
+dgross <- HollywoodMovies$DomesticGross
+
+genres <- cbind(dgross[genre == "Action"], dgross[genre == "Drama"], dgross[genre == "Romance"])
+
+
+boxplot(genres, ylab = "Domestic Gross", xlab = "Movie Genres", main = "Domestic Gross of Action, Drama, and Romance Movies")
+```
+
 
 \vspace{0.1in}
 
