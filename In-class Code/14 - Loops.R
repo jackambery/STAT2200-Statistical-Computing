@@ -24,7 +24,7 @@ y <- vector()      # creates an empty vector w/ unspecified length
 
 for (i in 1:5) {
   y[i] <- x[i] + 2
-  print(y[i])      # I'm printing just to demonstrate the process
+  print(y[i])     # I'm printing just to demonstrate the process
 }
 
 y
