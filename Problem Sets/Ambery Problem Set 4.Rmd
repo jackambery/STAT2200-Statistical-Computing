@@ -1,0 +1,225 @@
+---
+title: "STAT 2200: Problem Set 4"
+author: "Jack Ambery"
+date: "Due: Monday, 3/18 at the beginning of class"
+fontsize: 12pt
+output: pdf_document
+---
+
+
+<!-- set global options -->
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+\begin{itemize}
+  \item You may discuss this assignment with other students in the class, but 
+    you may not sit down and type it up with them or show them your code. You 
+    also may not discuss the assignment with anyone who isn't in our class, nor
+    may you look up anything online.
+  \item You must type up your homework using R Markdown. I want to see all of 
+    your code and output, and any answers you provide that aren't code must be 
+    typed above the respective \texttt{R} code chunk.
+  \item Make sure none of your code runs off the page, otherwise you will lose 
+    points.
+  \item You must print and turn in a PDF of your homework. I won't accept 
+    anything else (e.g., a Word document). All pages must be stapled together.
+  \item This assignment is worth 100 points.
+\end{itemize}
+
+
+\vspace{0.1in}
+
+\noindent 1. Create a sequence of 20 numbers as follows: the first number is 5, 
+and each number thereafter is found by multiplying the current number by 1.5 and 
+then subtracting 1. Print the resulting sequence.
+```{r}
+arr <- c(5, rep(0, times = 19))
+for (i in 1:19)
+  arr[i+1] <- (arr[i] * 1.5) - 1
+
+print(arr)
+```
+\vspace{0.1in}
+
+\noindent 2. Suppose you have the following vector of probabilities, each of 
+which measures the probability a person has a particular disease: 0.25, 0.83, 
+0.76, 0.25, 0.33, 0.51, 0.67, 0.50, 0.54, 0.75, 0.71, 0.03, 0.38, 0.64, and 
+0.19. Create a new variable where a one indicates that the person is predicted 
+to have the disease (based on a probability of 0.5 or above) and a zero 
+indicates that the person is predicted not to have the disease (based on a 
+probability under 0.5). Do this two different ways: 
+\begin{itemize}
+\item first, using a loop, and
+\item second, using the \texttt{ifelse()} function.
+\end{itemize}
+
+Print the resulting vectors. Note that they should contain the exact same 
+values!
+```{r}
+probabilities <- c(0.25, 0.83, 0.76, 0.25, 0.33, 0.51, 0.67, 0.50, 0.54, 0.75, 0.71, 0.03, 0.38, 0.64, 0.19)
+likelyhoods <- vector()
+
+for (i in 1:length(probabilities))
+  if (probabilities[i] >= 0.5) {
+    likelyhoods[i] <- 1
+  } else {
+    likelyhoods[i] <- 0
+  }
+print('Likelyhood using loop:')
+print(likelyhoods)
+
+likelyhoods2 <- ifelse(probabilities >= 0.5, 1, 0)
+print('Likelyhood using ifelse:')
+print(likelyhoods2)
+```
+
+\vspace{0.1in}
+
+\noindent 3. In this problem you will work with the \textit{Cars2020} dataset,
+which you downloaded from \url{http://www.lock5stat.com/datapage3e.html} and 
+used on Homework 3. Please work with the CSV again here. Create a new variable 
+that classifies the fuel efficiencies of the cars in the dataset based on the 
+following made-up criteria: a highway mpg under 20 is considered poor, a highway 
+mpg between 20 and 25 (inclusive) is considered acceptable, a highway mpg above 
+25 and at most 35 is considered good, and a highway mpg above 35 is considered 
+great. Make sure the dataset contains the new variable, and then print only the 
+following for every car in the dataset: the make and model of the car, as well 
+as the classified fuel efficiency.
+```{r}
+Cars2020 <- read.csv("../datasets/Cars2020.csv")
+
+fuelEff <- Cars2020$HwyMPG
+fuelClass <- vector()
+
+for (i in 1:length(fuelEff)) {
+  if (fuelEff[i] < 20) {
+    fuelClass[i] = "poor"
+  } else if (fuelEff[i] >= 20 & fuelEff[i] <= 25) {
+    fuelClass[i] = "acceptable"
+  } else if (fuelEff[i] > 25 & fuelEff[i] <= 35) {
+    fuelClass[i] = "good"
+  } else { #fuelEff[i] > 35
+    fuelClass[i] = "great"
+  }
+}
+# adding it to Cars2020 dataframe
+Cars2020$fuelClass <- fuelClass
+
+#printing out specific columns of Cars2020
+print(Cars2020[c("Make","Model","fuelClass")])
+
+```
+
+\vspace{0.1in}
+
+\noindent 4. Use a loop to fill a $6 \times 8$ (i.e., six rows and eight 
+columns) matrix as follows: if the sum of the indices of an element's position 
+in the matrix is even, then the new element is the product of the indices. On 
+the other hand, if the sum of the indices is odd, then the new element is the 
+sum of the indices plus three. Print the resulting matrix.
+```{r}
+table <- matrix(0, nrow = 6, ncol = 8)
+
+for(i in 1:nrow(table)) {
+  for (j in 1:ncol(table)) {
+    if ((i + j) %% 2 == 0) { # if even
+      table[i, j] <- i*j
+    } else { # if odd
+      table[i, j] <- i + j + 3
+    }
+  }
+}
+print(table)
+```
+
+\vspace{0.1in}
+  
+\noindent 5. Suppose I taught a course last semester that consisted of homework, 
+two midterm exams, and a final exam, which are weighted as follows when 
+calculating a student's final course average: homework is worth 35%, the 
+midterms are each worth 20%, and the final exam is worth 25%. Also suppose I set 
+up the course grading scheme as follows when determining final course letter 
+grades:
+\begin{itemize}
+\item A = [90, 100]
+\item B = [80, 90)
+\item C = [70, 80)
+\item D = [60, 70)
+\item F = below 60
+\end{itemize}
+
+The grades for the students in the class can be found in the 
+\textit{CourseGrades} dataset on Blackboard. Determine the letter grade each 
+student earned in the course. That letter grade should be added as a new 
+variable to the data frame, and you must print the final data frame. Note that 
+everything in this problem is made up.
+```{r}
+grades <- read.csv("../datasets/CourseGrades.csv")
+FinalGrade <- vector()
+LetterGrade <- vector()
+
+for (i in 1:nrow(grades)) {
+  hwPercent <- grades[i, 2] * 0.35
+  midterm1 <- grades[i, 3] * 0.2
+  midterm2 <- grades[i, 4] * 0.2
+  final <- grades[i, 5] * 0.25
+  total <- hwPercent + midterm1 + midterm2 + final
+  FinalGrade[i] <- total
+}
+
+
+for (i in 1:length(FinalGrade)) {
+  if (FinalGrade[i] >= 90) {
+    LetterGrade[i] = "A"
+  } else if (FinalGrade[i] < 90 & FinalGrade[i] >= 80) {
+    LetterGrade[i] = "B"
+  } else if (FinalGrade[i] < 80 & FinalGrade[i] >= 70) {
+    LetterGrade[i] = "C"
+  } else if (FinalGrade[i] < 70 & FinalGrade[i] >= 60) {
+    LetterGrade[i] = "D"
+  } else { #FinalGrade[i] < 60
+    LetterGrade[i] = "F"
+  }
+}
+
+grades$NumGrade <- FinalGrade
+grades$LetterGrade <- LetterGrade
+print(grades)
+```
+
+\vspace{0.1in}
+
+\noindent 6. Suppose a friend of yours is currently a second-semester senior, 
+and her GPAs for the previous (individual) semesters, in order (starting first 
+semester freshman year), are as follows: 4.00, 3.50, 3.67, 3.33, 2.67, 3.42, and 
+3.56. Assuming she took the same number of credits each semester, write a loop 
+that calculates and stores her cumulative GPA after each semester. Then print 
+the resulting vector of cumulative GPAs.
+
+\vspace{0.1in}
+
+\noindent 7. Returning to problem 6, suppose your friend was on an academic 
+scholarship that requires the student to maintain a cumulative GPA of at least 
+3.6 in order to continue to receive financial support the following semester. If 
+at any point the student's cumulative GPA drops below 3.6, they lose the 
+scholarship and stop receiving the financial support permanently. Write a while 
+loop that counts the number of semesters your friend received financial support 
+from the scholarship during her college career. Print that number. Additionally, 
+you should assume your friend received the benefits starting first semester 
+freshman year.
+
+\vspace{0.1in}
+
+\noindent 8. The Fibonacci sequence is a very special sequence that consists of
+the following numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, etc. If you aren't 
+familiar with this sequence and don't know how each number is found, please 
+search on Google. It's pretty cool! Write code that calculates the first 40
+numbers in the sequence, and then print them. Note that you may start with the 
+first two numbers in the sequence only.
+
+
+
