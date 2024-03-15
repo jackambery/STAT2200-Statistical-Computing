@@ -171,7 +171,6 @@ for (i in 1:nrow(grades)) {
   FinalGrade[i] <- total
 }
 
-
 for (i in 1:length(FinalGrade)) {
   if (FinalGrade[i] >= 90) {
     LetterGrade[i] = "A"
@@ -186,7 +185,6 @@ for (i in 1:length(FinalGrade)) {
   }
 }
 
-grades$NumGrade <- FinalGrade
 grades$LetterGrade <- LetterGrade
 print(grades)
 ```
@@ -199,6 +197,16 @@ semester freshman year), are as follows: 4.00, 3.50, 3.67, 3.33, 2.67, 3.42, and
 3.56. Assuming she took the same number of credits each semester, write a loop 
 that calculates and stores her cumulative GPA after each semester. Then print 
 the resulting vector of cumulative GPAs.
+```{r}
+gpas <- c(4.00, 3.50, 3.67, 3.33, 2.67, 3.42, 3.56)
+cumulatives <- vector()
+
+for (i in 1:length(gpas)) {
+  cumulatives[i] <- mean(gpas[1:i])
+}
+print("Cumulative GPAs:")
+cumulatives
+```
 
 \vspace{0.1in}
 
@@ -211,6 +219,17 @@ loop that counts the number of semesters your friend received financial support
 from the scholarship during her college career. Print that number. Additionally, 
 you should assume your friend received the benefits starting first semester 
 freshman year.
+```{r}
+semesters = 1
+cumulative = cumulatives[1]
+while (cumulative >= 3.6) {
+  cumulative = cumulatives[semesters + 2]
+  semesters = semesters + 1
+}
+print("The student held the scholarship for this many semesters:")
+print(semesters)
+
+```
 
 \vspace{0.1in}
 
@@ -220,6 +239,14 @@ familiar with this sequence and don't know how each number is found, please
 search on Google. It's pretty cool! Write code that calculates the first 40
 numbers in the sequence, and then print them. Note that you may start with the 
 first two numbers in the sequence only.
+```{r}
+fib <- c(0, 1)
+for (i in 3:40) {
+  fib[i] <- fib[i - 1] + fib[i - 2]
+}
+print("First 40 of Fiboncci:")
+fib
+```
 
 
 

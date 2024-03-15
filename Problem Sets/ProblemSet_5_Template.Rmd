@@ -1,0 +1,117 @@
+---
+title: "STAT 2200: Problem Set 5"
+author: ""
+date: "Due: Wednesday, 3/27 at the beginning of class"
+fontsize: 12pt
+output: pdf_document
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\vspace{0.1in}
+
+\begin{itemize}
+  \item You may discuss this assignment with other students in the class, but 
+    you may not sit down and type it up with them or show them your code. You 
+    also may not discuss the assignment with anyone who isn't in our class, nor
+    may you look up anything online.
+  \item You must type up your homework using R Markdown. I want to see all of 
+    your code and output, and any answers you provide that aren't code must be 
+    typed above the respective \texttt{R} code chunk.
+  \item Make sure none of your code runs off the page, otherwise you will lose 
+    points.
+  \item You must print and turn in a PDF of your homework. I won't accept 
+    anything else (e.g., a Word document). All pages must be stapled together.
+  \item This assignment is worth 75 points.
+\end{itemize}
+
+
+\vspace{0.2in}
+
+
+\noindent 1. Write a function that converts temperatures measured in degrees 
+Celsius into temperatures measured in degrees Fahrenheit. The equation for doing 
+so is: $F = \frac{9}{5}C+32$. Then use the function to convert the following 
+three temperatures from degrees Celsius to degrees Fahrenheit: 0, 14, and 31. 
+Print the resulting temperatures (in degrees Fahrenheit).
+
+\vspace{0.2in}
+
+\noindent 2. The formula for calculating the amount of money someone has after
+investing an initial amount of money in an account that earns interest 
+compounded a certain number of times per year is: $A = P(1+\frac{r}{n})^{nt}$, 
+where $A=$ the final amount, $P=$ the principal balance (the amount invested 
+initially), $r=$ the annual nominal interest rate (as a proportion), $n=$ the 
+number of times the interest is compounded per year, and $t=$ the number of 
+years the entire amount is invested without any money being withdrawn from (or 
+more added by the investor to) the account. Write a function that calculates $A$ 
+using the formula above. Then use the function to calculate (and print) the 
+amount of money someone has in their account after investing \$4,500 with a 
+3.5\% nominal interest rate, compounded monthly, for 20 years.
+
+\vspace{0.2in}
+
+\noindent 3. Write a function that accepts a vector of values and returns the 
+following statistics as a named vector: mean, median, standard deviation, IQR, 
+range, $2.5^{\text{th}}$ percentile, and $97.5^{\text{th}}$ percentile. Then use 
+the function to find this set of statistics for the annual amount of 
+precipitation in US cities as recorded in the \textit{precip} dataset, which 
+comes with base \texttt{R}. Make sure the set of statistics is printed.
+
+\newpage
+
+\noindent 4. Write a function with three arguments: \texttt{x}, \texttt{y}, and 
+\texttt{z}, all of which are meant to be individual numbers. The function must 
+do the following: 
+\begin{itemize}
+\item if the sum of \texttt{x} and \texttt{y} is under 10, then the function 
+  returns the product of \texttt{y} and \texttt{z}, minus 2;
+\item if the sum of \texttt{x} and \texttt{y} is between 10 and 15, inclusive, 
+  then the function returns the sum of \texttt{x} and \texttt{z}, plus 6;
+\item otherwise, the function returns the product of \texttt{x}, \texttt{y}, and 
+  \texttt{z}.
+\end{itemize}
+
+Then use the function for the following three scenarios: (1) x = 1, y = 6, 
+z = 3, (2) x = 8, y = 6, z = 2, and (3) x = 10, y = 7, z = 9. Make sure the 
+three results are printed separately.
+
+\vspace{0.2in}
+
+\noindent 5. Quadratic functions follow the form $f(x)=ax^2+bx+c$, and the graph 
+of a quadratic function is a parabola. To find where a parabola passes through 
+the $x$-axis (values known as roots), you set the equation equal to 0 and find 
+the $x$ value(s) that satisfy the equation. There are three possibilities for 
+the number of roots of a quadratic function: 0, 1, or 2. The quadratic formula, 
+as you may remember from a previous math course, finds the root(s) of a 
+quadratic function, if any exist. The formula is:
+\begin{center}
+$\displaystyle x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}$.
+\end{center}
+
+It turns out that if the part under the square root (called the discriminant) is 
+a negative number, then there are no roots; if the discriminant equals 0, then 
+there is only one root; and if the discriminant is a positive number, then there 
+are two roots. Note that I'm ignoring imaginary numbers here, for anyone who 
+knows what those are.
+
+Write a function -- with default values of 1 for $a$, 2 for $b$, and 1 for $c$ 
+-- that does the following:
+\begin{itemize}
+\item if no root exists, then a message is printed saying there are no roots;
+\item if only one root exists, then a message is printed saying there is only one 
+  root, and the root must be printed as well; and
+\item if two roots exist, then a message is printed saying there are two roots, 
+  and both roots must be printed as well.
+\end{itemize}
+
+Then find the roots for the following quadratic functions: (1) 
+$f(x)=5x^2-8.5x+2.8$, (2) $f(x)=-3x^2+5x-11$, and (3) $f(x)=4x^2-7x+12.25$. Make 
+sure the result is printed for each of the three functions.
+
+
+
