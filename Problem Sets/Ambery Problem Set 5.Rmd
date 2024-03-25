@@ -39,7 +39,13 @@ so is: $F = \frac{9}{5}C+32$. Then use the function to convert the following
 three temperatures from degrees Celsius to degrees Fahrenheit: 0, 14, and 31. 
 Print the resulting temperatures (in degrees Fahrenheit).
 ```{r}
-
+celsiusToFahrenheit <- function(celsiusTemp) {
+  fahrenehitTemp = ((9/5) * celsiusTemp) + 32
+  fahrenehitTemp
+}
+celsiusToFahrenheit(0)
+celsiusToFahrenheit(14)
+celsiusToFahrenheit(31)
 ```
 
 \vspace{0.2in}
@@ -56,7 +62,11 @@ using the formula above. Then use the function to calculate (and print) the
 amount of money someone has in their account after investing \$4,500 with a 
 3.5\% nominal interest rate, compounded monthly, for 20 years.
 ```{r}
-
+investmentCalc <- function(P, r, n, t) {
+  finalBalance <- P * (1 + (r / n)) ^ (n * t)
+  finalBalance
+}
+investmentCalc(4500, 0.035, 12, 20)
 ```
 
 \vspace{0.2in}
@@ -68,7 +78,23 @@ the function to find this set of statistics for the annual amount of
 precipitation in US cities as recorded in the \textit{precip} dataset, which 
 comes with base \texttt{R}. Make sure the set of statistics is printed.
 ```{r}
-
+library(dplyr)
+dataSummary <- function(values) {
+  mean <- mean(values)
+  median <- median(values)
+  sd <- sd(values)
+  iqr <- IQR(values)
+  range <- range(values)
+  percentiles <- quantile(values, c(0.025, 0.975))
+  summary <- c(Mean = mean, 
+               Median = median, 
+               StDev = sd, 
+               IQR = iqr, 
+               Range = range, # TODO this is returning an array of 2 values
+               percentiles)
+  summary
+}
+dataSummary(c(24, 25, 27, 4, 57, 24, 11))
 ```
 
 \newpage
